@@ -18,3 +18,12 @@ def cart_quantity(product , cart):
         if int(id) == product.id:
             return cart.get(id)
     return 0;
+
+
+@register.filter(name='price_total')
+def price_total(product  , cart):
+    return product.price * cart_quantity(product , cart)
+    
+    
+    
+    
