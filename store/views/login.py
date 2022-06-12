@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import check_password
 from store.models.customer import Customer
 from django.views import View
+from django.contrib import auth
 
 
 class Login(View):
@@ -18,7 +19,7 @@ class Login(View):
             flag = check_password(password, customer.password)
             if flag:
                 request.session['customer'] = customer.id
-
+                # auth.login(request, customer)
                 return redirect('homepage')
             else:
                 error_message = 'Email or Password invalid !!'
